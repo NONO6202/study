@@ -2,32 +2,70 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>main</title>
+	<title>main</title> 
 	<style>
-		*{ 
-			margin : 0px; 
+		body{ 
+			background-color : #403F4C;
+			margin : 0px;
+		}
+		#sidebar {
+			background-color : #2C2B3C;
+			height: 100%;
+			width: 20%;
+			position: fixed;
+			z-index: 1;
+			top: 0;
+			left: 0;
+			overflow-x: hidden;
+			padding-top: 16px;
+		}
+		#sidebar a {
+			padding: 6px 8px 6px 16px;
+			text-decoration: none;
+			font-size: 20px;
+			color: #818181;
+			display: block;
+		}
+		#sidebar a:hover {
+			color: #f1f1f1;
+		}
+
+		#topbar{
+			background-color: #1B2432;
+			margin-left: 20%;
 			padding : 0px;
+			height: 10%;
+			top: 0;
+			left: 0;
+			overflow-x: hidden;
+			padding-top: 16px;
+			color : #818181;
 		}
-		bady{ background-color : black;}
-		#left{
-			background-color : gray;
-			width : 20%;
-			height : 100vh;
+		
+		#main {
+			margin-left: 21%; /* Same as the width of the sidenav */
+			padding: 0px 0.5%;
+			color : white;
 		}
-		#right{
-			background-color : gray;
-			width : 80%;
-			height : 100vh;
-		}
+
+		/*미디어 쿼리 나중에 확인하기!!*/
+
 	</style>
 </head>
 <body>
-	<div id="left" align="left">
-
-	</div>
-	<div id="right" align="right">
-
+	<div id="sidebar">
+		<a href=""> <i id="1">1</i></a>
+		<a href=""> <i id="2">2</i></a>
+		<a href=""> <i id="3">3</i></a>
+		<a href=""> <i id="4">4</i></a>
 	</div>
 	
+	<div id="topbar">
+		<span>asd</span>
+	</div>
+
+	<span>asdasdasd</span>
+
+
 </body>
 </html>
