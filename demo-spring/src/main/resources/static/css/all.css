@@ -1,12 +1,22 @@
+@font-face {
+    font-family: 'Cafe24Ssurround';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body{ 
     background-color : #262626;
     margin : 0px;
+    font-family: 'Cafe24Ssurround';
 }
+/*=====================================*/
+
 #sidebar {
     background-color : #383838;
     color: #838383;
     height: 100%;
-    width: 225px;
+    width: 210px;
     position: fixed;
     z-index: 1;
     top: 0;
@@ -14,23 +24,52 @@ body{
     overflow-x: hidden;
     padding-top: 16px;
 }
+/*=====================================*/
 
 #profile{
     color : #f1f1f1;
-    margin-top: 25px;
-    margin-bottom: 25px;
+    margin: 25px 0px 25px 0px;
 }
 #profileBox{
     width: 150px;
     height: 150px; 
     border-radius: 40%;
     overflow: hidden;
+    position: relative;
+    transition: opacity 0.2s;
 }
 #profileImg {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    -webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+
 }
+#profileImg:hover{
+    -webkit-transform: scale(1.2);
+	transform: scale(1.2);
+    filter:blur(1px)
+}
+#overlay{
+    color: #52d45d;
+    margin: 20px 0px 0px 45px;
+    font-size: 15px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+#profileBox:hover #overlay{
+    opacity: 1;
+}
+/*=====================================*/
 
 #menu a {
     color: #838383;
@@ -64,22 +103,29 @@ body{
     -moz-transform: translateX(0px);
     transform: translateX(0px);
 }
-/* [sad]*/
+/*=====================================*/
+
 #topbar{
     background-color: #4a4a4a;
-    margin-left: 225px;
-    padding : 0px;
-    height: 10%;
+    margin: 0px 0px 0px 210px;
+    padding : 8px 0px 8px 40px;
     top: 0;
     left: 0;
     overflow-x: hidden;
-    padding-top: 16px;
-    color : #838383;
+    color: #838383;
 }
+#topbarSelector{
+    text-decoration-line: none;
+    color: #529ad4;
+}
+#topbarSelector:hover{
+    text-decoration-line: underline;
+    color: #93cf61;
+}
+/*=====================================*/
 
-#place1234 {
-    margin-left: 225px; /* Same as the width of the sidenav */
-    padding: 0px 0.5%;
+#point {/* Same as the width of the sidenav */
+    margin: 50px 0px 0px 250px;
     color : white;
 }
 

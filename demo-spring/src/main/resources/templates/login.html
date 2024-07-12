@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head xmlns:th="http://www.thymeleaf.org">
+	<meta charset="UTF-8" >
+	<title>로그인</title> 
+	<link rel="stylesheet" href="css/login.css">
+	<style th:inline="css">
+		
+	</style>
+</head>
+<body>
+    <aside id="loginwindow">
+        <form method="get" action="/login/check">
+            <table>
+                <tr id="loginsign"> <th>로그인
+                <tr class="login"> <td>ID: <td><input type="text" name="mid" required>
+                <tr class="login"> <td>PW: <td><input type="password" name="mpw" required>
+            </table>
+            <button>login</button>
+        </form>
+    </aside>
+</body>
+</html>
