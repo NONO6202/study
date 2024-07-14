@@ -1,4 +1,4 @@
-package dev.nono6202.demo_spring;
+package dev.nono6202.demo_spring.DB;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

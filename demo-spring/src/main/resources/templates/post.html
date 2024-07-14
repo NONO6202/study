@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head xmlns:th="http://www.thymeleaf.org">
+	<meta charset="UTF-8" >
+	<title>게시창</title> 
+    <style>
+        body{
+            background-color: #262626;
+            color: #838383;
+        }
+    </style>
+</head>
+<body>
+    <div th:if="${checking}=='Success'">
+        <form method="get" action="/post/putup1">
+            <h1>게시글 올리기</h1>
+            <table>
+                <tr> <td>목차: <td><select name="content">
+                    <option th:each="a:${contentarr}" th:value="${a[0]}" th:utext="${a[0]}">
+                </select>
+                <tr> <td>제목: <td><input type="text" name="title" size="50">
+                <tr> <td>태그: <td><input type="text" name="tag" size="50">
+            </table><p>
+            <p>태그는 각 단어 마다 #을 붙어줄것</p>
+            <button>업데이트</button>
+        </form>
+
+        <form method="get" action="/post/putup2">
+            <h2>목차 추가하기</h2>
+            <table>
+                <tr> <td>한글: <td><input type="text" name="kor" size="50">
+                <tr> <td>영어: <td><input type="text" name="eng" size="50">
+            </table><p>
+            <button>업데이트</button>
+        </form>
+    </div>
+    <div th:if="${checking}!='Success'">
+        <img src="/image/jerry.gif" alt="감사 제리짤"><p>
+        <h3>입장은 힘들 것 같습니다.</h3>
+        <h4>감사합니다.</h4>
+    </div>
+</body>
+</html>

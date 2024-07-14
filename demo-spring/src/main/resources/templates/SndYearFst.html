@@ -31,8 +31,7 @@
 
 		<div id="menu">
 			<a href="/" > <span id="Main">MAIN</span></a>
-			<a href="/SndYearFst"> <span id="SndYearFst">2학년 1학기</span></a>
-			<a href="etc"> <span id="etc">그 외</span></a>
+			<a th:each="a:${content}" th:href="@{|/${a[1]}}|"> <span th:utext="${a[0]}" th:id="${a[1]}">utext</span></a>
 		</div>
 	</div>
 	
