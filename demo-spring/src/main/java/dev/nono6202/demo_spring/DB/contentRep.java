@@ -6,6 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 public interface contentRep extends JpaRepository<content, String>{
-    @Query("select kor from content") List<String> findkor();
-    @Query("select kor,eng from content") List<List<String>> findall();
+    @Query("select link,appearance from content") List<List<String>> findall();
 }

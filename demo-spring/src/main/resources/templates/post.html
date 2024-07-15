@@ -16,7 +16,7 @@
             <h1>게시글 올리기</h1>
             <table>
                 <tr> <td>목차: <td><select name="content">
-                    <option th:each="a:${contentarr}" th:value="${a[0]}" th:utext="${a[0]}">
+                    <option th:each="a:${contentarr}" th:value="${a[1]}" th:utext="${a[1]}">
                 </select>
                 <tr> <td>제목: <td><input type="text" name="title" size="50">
                 <tr> <td>태그: <td><input type="text" name="tag" size="50">
@@ -28,16 +28,36 @@
         <form method="get" action="/post/putup2">
             <h2>목차 추가하기</h2>
             <table>
-                <tr> <td>한글: <td><input type="text" name="kor" size="50">
-                <tr> <td>영어: <td><input type="text" name="eng" size="50">
+                <tr> <td>목 차: <td><input type="text" name="appearance" size="50">
+                <tr> <td>링크(영어): <td><input type="text" name="link" size="50">
             </table><p>
             <button>업데이트</button>
+        </form>
+
+        <form method="get" action="/post/delete1">
+            <h3>목차 삭제</h3>
+            <table>
+                <tr> <td>목차: <td><select name="content">
+                    <option th:each="a:${contentarr}" th:value="${a[0]}" th:utext="${a[1]}">
+                </select>
+            </table>
+            <button>삭제하기</button>
+        </form>
+
+        <form method="get" action="/post/delete2">
+            <h4>게시글 삭제</h4>
+            <table>
+                <tr> <td>게시글: <td><select name="title">
+                    <option th:each="t:${titles}" th:value="${t[0]}" th:utext="${t[1]}">
+                </select>
+            </table>
+            <button>삭제하기</button>
         </form>
     </div>
     <div th:if="${checking}!='Success'">
         <img src="/image/jerry.gif" alt="감사 제리짤"><p>
-        <h3>입장은 힘들 것 같습니다.</h3>
-        <h4>감사합니다.</h4>
+        <h1>입장은 힘들 것 같습니다.</h1>
+        <h3>감사합니다.</h3>
     </div>
 </body>
 </html>

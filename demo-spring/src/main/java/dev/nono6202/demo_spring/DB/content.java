@@ -5,6 +5,6 @@ import jakarta.persistence.Id;
 
 @Entity
 public class content {
-    @Id public String kor;
-    public String eng;
+    @Id public String link;
+    public String appearance;
 }

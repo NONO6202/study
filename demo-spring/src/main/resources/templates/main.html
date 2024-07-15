@@ -3,7 +3,7 @@
 <head xmlns:th="http://www.thymeleaf.org">
 	<meta charset="UTF-8" >
 	<title>Main</title> 
-	<link rel="stylesheet" href="css/all.css">
+	<link rel="stylesheet" href="/css/all.css">
 	<style th:inline="css">
 		#[[${selector}]]{
 			padding: 0px 0px 0px 0px;
@@ -31,7 +31,7 @@
 
 		<div id="menu">
 			<a href="/" > <span id="Main">MAIN</span></a>
-			<a th:each="a:${content}" th:href="@{|/${a[1]}}|"> <span th:utext="${a[0]}" th:id="${a[1]}">utext</span></a>
+			<a name="contentlist" th:each="a:${content}" th:href="@{|/Main/${a[0]}}|" th:value="${a[0]}"> <span th:utext="${a[1]}" th:id="${a[0]}">utext</span></a>
 		</div>
 	</div>
 	

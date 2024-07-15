@@ -1,5 +1,7 @@
 package dev.nono6202.demo_spring;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +25,13 @@ public class UtileController {
     private contentRep crep;
     @Autowired
     private postRep prep;
+
+    @GetMapping("/Abasic")
+    public String Abasic(Model mo){
+        mo.addAttribute("selector", "Main");
+        mo.addAttribute("content", crep.findall());
+        return "Main";
+    }
 
     @GetMapping("/login")
     public String login(Model mo){
@@ -57,6 +66,7 @@ public class UtileController {
     public String post(HttpSession se, Model mo) {
         mo.addAttribute("checking", se.getAttribute("checking"));
         mo.addAttribute("contentarr", crep.findall());
+        mo.addAttribute("titles", prep.findtitle());
         return "post";
     }
 
@@ -76,17 +86,39 @@ public class UtileController {
     }
 
     @GetMapping("/post/putup2")
-    public String postputup2(@RequestParam("kor") String kor,
-                            @RequestParam("eng") String eng,
+    public String postputup2(@RequestParam("appearance") String appearance,
+                            @RequestParam("link") String link,
                             RedirectAttributes re) {
         
         content c = new content();
-        c.kor= kor; c.eng= eng;
+        c.appearance= appearance; c.link= link;
         crep.save(c);
 
+        Filehtml.createhtml(null, link);
+        re.addAttribute("msg", "대성공");
+        re.addAttribute("url","/post");
+        return "redirect:/popup";
+    }
+
+    @GetMapping("/post/delete1")
+    public String postdelete1(@RequestParam("content") String content,
+                            RedirectAttributes re) {
+
+        crep.deleteById(content);
+        Filehtml.deletehtml(null, content);
         re.addAttribute("msg", "대성공");
         re.addAttribute("url","/post");
         return "redirect:/popup";
     }
     
+    @GetMapping("/post/delete2")
+    public String postdelete2(@RequestParam("title") String title,
+                            RedirectAttributes re) {
+
+        prep.deleteById(title);
+        Filehtml.deletehtml(null, title);
+        re.addAttribute("msg", "대성공");
+        re.addAttribute("url","/post");
+        return "redirect:/popup";
+    }
 }
