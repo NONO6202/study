@@ -14,6 +14,8 @@ import dev.nono6202.demo_spring.DB.content;
 import dev.nono6202.demo_spring.DB.contentRep;
 import dev.nono6202.demo_spring.DB.post;
 import dev.nono6202.demo_spring.DB.postRep;
+import dev.nono6202.demo_spring.java.Filehtml;
+import dev.nono6202.demo_spring.java.charCount;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -43,7 +45,7 @@ public class UtileController {
                             @RequestParam("url") String url, Model mo) {
         mo.addAttribute("msg",msg);
         mo.addAttribute("url",url);                      
-        return "popup";
+        return "/basic/popup";
     }
 
     @GetMapping("/login/check")
@@ -73,12 +75,18 @@ public class UtileController {
     @GetMapping("/post/putup1")
     public String postputup1(@RequestParam("content") String content,
                             @RequestParam("title") String title,
+                            @RequestParam("link") String link,
                             @RequestParam("tag") String tag,
+                            @RequestParam("substance") String substance,
                             RedirectAttributes re) {
         
         post p = new post();
-        p.content= content; p.title= title; p.tag= tag;
+        p.content= content; p.title= title; p.link= link; 
+        p.tag= tag; p.substance = substance;
+
         prep.save(p);
+
+        Filehtml.createhtml(null, content+"\\"+link);
         
         re.addAttribute("msg", "대성공");
         re.addAttribute("url","/post");
@@ -91,10 +99,25 @@ public class UtileController {
                             RedirectAttributes re) {
         
         content c = new content();
-        c.appearance= appearance; c.link= link;
+        c.num= 0; c.appearance= appearance; c.link= link;
         crep.save(c);
 
         Filehtml.createhtml(null, link);
+        re.addAttribute("msg", "대성공");
+        re.addAttribute("url","/post");
+        return "redirect:/popup";
+    }
+
+    @GetMapping("/post/num")
+    public String postnum(@RequestParam("num") List<Integer> num,
+                            RedirectAttributes re) {
+        
+        List<String> link = crep.findlink();
+
+        for(int i=0;i<crep.colcount();i++){
+            crep.updatenum(num.get(i),link.get(i));
+        }
+        
         re.addAttribute("msg", "대성공");
         re.addAttribute("url","/post");
         return "redirect:/popup";
@@ -115,7 +138,7 @@ public class UtileController {
     public String postdelete2(@RequestParam("title") String title,
                             RedirectAttributes re) {
 
-        prep.deleteById(title);
+        prep.deleteById(charCount.extract(null,title));
         Filehtml.deletehtml(null, title);
         re.addAttribute("msg", "대성공");
         re.addAttribute("url","/post");

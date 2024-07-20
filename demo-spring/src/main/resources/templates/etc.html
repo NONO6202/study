@@ -31,17 +31,24 @@
 
 		<div id="menu">
 			<a href="/" > <span id="Main">MAIN</span></a>
-			<a name="contentlist" th:each="a:${content}" th:href="@{|/Main/${a[0]}}|" th:value="${a[0]}"> <span th:utext="${a[1]}" th:id="${a[0]}">utext</span></a>
+			<a name="contentlist" th:each="c:${content}" th:href="@{|/Main/${c[1]}}|" th:value="${c[1]}"> <span th:utext="${c[2]}" th:id="${c[1]}">utext</span></a>
 		</div>
 	</div>
 	
 	<div id="topbar">
-		<a th:href="@{|/Main/${selector}}|" id="topbarSelector"> <span th:text="${selector}">selector</span> </a>
+		<a th:href="@{|/Main/${selector}|}" id="topbarSelector"> <span th:text="${selector}">selector</span> </a>
 	</div>
 
 	<div id="point">
 		<!--DB// 제목 작성일 짧은 글 등 접목 시키기-->
-		<h1>환영합니다!</h1>
+		<div>
+			<h1>환영합니다!</h1>
+
+		</div>
+		<div th:each="p:${post}">
+			<a name="postlist" th:href="@{|${selector}/${p[2]}|}" th:value="${p[2]}"> <span name="contentlist" th:utext="${p[1]}" th:value="${selector}">utext</span></a>
+			<hr>
+		</div>
 	</div>
 
 

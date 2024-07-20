@@ -16,44 +16,60 @@
             <h1>게시글 올리기</h1>
             <table>
                 <tr> <td>목차: <td><select name="content">
-                    <option th:each="a:${contentarr}" th:value="${a[1]}" th:utext="${a[1]}">
+                    <option th:each="a:${contentarr}" th:value="${a[1]}" th:utext="${a[2]}">
                 </select>
-                <tr> <td>제목: <td><input type="text" name="title" size="50">
-                <tr> <td>태그: <td><input type="text" name="tag" size="50">
+                <tr> <td>제목: <td><input type="text" name="title" size="50" required>
+                <tr> <td>링크: <td><input type="text" name="link" size="50" required>
+                <tr> <td>태그: <td><input type="text" name="tag" size="50" required>
             </table><p>
             <p>태그는 각 단어 마다 #을 붙어줄것</p>
+            내용:<br>
+            <textarea name="substance" rows="15" cols="59"required></textarea><p>
+            <p>내용은 html 문법을 따름</p>
+
             <button>업데이트</button>
         </form>
-
+        <hr>
         <form method="get" action="/post/putup2">
             <h2>목차 추가하기</h2>
             <table>
-                <tr> <td>목 차: <td><input type="text" name="appearance" size="50">
-                <tr> <td>링크(영어): <td><input type="text" name="link" size="50">
+                <tr> <td>목 차: <td><input type="text" name="appearance" size="50" required>
+                <tr> <td>링크(영어): <td><input type="text" name="link" size="50" required>
             </table><p>
             <button>업데이트</button>
         </form>
-
+        <hr>
+        <form method="get" action="/post/num">
+            <h3>목차 순서조정</h3>
+            <table>
+                <tr th:each="a:${contentarr}"> 
+                    <td th:utext="${a[2]}"> <td><input type="number" name="num" th:value="${a[0]}" required>
+            </table><p>
+            <p>숫자가 작을수록 상단에 위치</p>
+            <button>업데이트</button>
+        </form>
+        <hr>
         <form method="get" action="/post/delete1">
-            <h3>목차 삭제</h3>
+            <h4>목차 삭제</h4>
             <table>
                 <tr> <td>목차: <td><select name="content">
-                    <option th:each="a:${contentarr}" th:value="${a[0]}" th:utext="${a[1]}">
+                    <option th:each="a:${contentarr}" th:value="${a[1]}" th:utext="${a[2]}">
                 </select>
             </table>
             <button>삭제하기</button>
         </form>
-
+        <hr>
         <form method="get" action="/post/delete2">
-            <h4>게시글 삭제</h4>
+            <h5>게시글 삭제</h5>
             <table>
                 <tr> <td>게시글: <td><select name="title">
-                    <option th:each="t:${titles}" th:value="${t[0]}" th:utext="${t[1]}">
+                    <option th:each="t:${titles}" th:value="${t[0]+'\\'+t[2]}" th:utext="${t[0]}+': '+${t[1]}">
                 </select>
             </table>
             <button>삭제하기</button>
         </form>
     </div>
+    <hr>
     <div th:if="${checking}!='Success'">
         <img src="/image/jerry.gif" alt="감사 제리짤"><p>
         <h1>입장은 힘들 것 같습니다.</h1>
