@@ -84,7 +84,7 @@ public class UtileController {
             re.addAttribute("msg", "동일한 링크가 있습니다.");
             re.addAttribute("url","/post");
         }else if(charThing.annihilating(null, link)){
-            re.addAttribute("msg", "특수문자 또는 특정단어가 들어가 있습니다.");
+            re.addAttribute("msg", "특정특수문자 또는 특정단어가 들어가 있습니다.");
             re.addAttribute("url","/post");
         }else{
             post p = new post();
@@ -112,7 +112,7 @@ public class UtileController {
             re.addAttribute("msg", "동일한 링크가 있습니다.");
             re.addAttribute("url","/post");
         }else if(charThing.annihilating(null, link)){
-            re.addAttribute("msg", "특수문자 또는 특정단어가 들어가 있습니다.");
+            re.addAttribute("msg", "특정특수문자 또는 특정단어가 들어가 있습니다.");
             re.addAttribute("url","/post");
         }else{
             content c = new content();
