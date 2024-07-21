@@ -22,9 +22,11 @@
                 <tr> <td>링크: <td><input type="text" name="link" size="50" required>
                 <tr> <td>태그: <td><input type="text" name="tag" size="50" required>
             </table><p>
-            <p>태그는 각 단어 마다 #을 붙어줄것</p>
+            <p>각각의 태그 마다 #을 붙어줄것</p>
             내용:<br>
-            <textarea name="substance" rows="15" cols="59"required></textarea><p>
+            &lt;body&gt;<br>
+            <textarea name="substance" rows="15" cols="59"required></textarea><br>
+            &lt;/body&gt;<br>
             <p>내용은 html 문법을 따름</p>
 
             <button>업데이트</button>
@@ -34,7 +36,7 @@
             <h2>목차 추가하기</h2>
             <table>
                 <tr> <td>목 차: <td><input type="text" name="appearance" size="50" required>
-                <tr> <td>링크(영어): <td><input type="text" name="link" size="50" required>
+                <tr> <td>링 크: <td><input type="text" name="link" size="50" required>
             </table><p>
             <button>업데이트</button>
         </form>
@@ -53,9 +55,10 @@
             <h4>목차 삭제</h4>
             <table>
                 <tr> <td>목차: <td><select name="content">
-                    <option th:each="a:${contentarr}" th:value="${a[1]}" th:utext="${a[2]}">
+                    <option value="void">선택하기
+                    <option th:each="a:${contentarr}" th:value="${a[1]}" th:utext="${a[2]}+'('+${a[1]}+')'">
                 </select>
-            </table>
+            </table><br>
             <button>삭제하기</button>
         </form>
         <hr>
@@ -63,9 +66,10 @@
             <h5>게시글 삭제</h5>
             <table>
                 <tr> <td>게시글: <td><select name="title">
+                    <option value="void">선택하기
                     <option th:each="t:${titles}" th:value="${t[0]+'\\'+t[2]}" th:utext="${t[0]}+': '+${t[1]}">
                 </select>
-            </table>
+            </table><br>
             <button>삭제하기</button>
         </form>
     </div>

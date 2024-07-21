@@ -11,7 +11,7 @@ public class Filehtml {
         String oriFilePath;
         String copyFilePath1 = "demo-spring\\src\\main\\resources\\templates\\" + content+".html";
         String copyFilePath2 = "demo-spring\\build\\resources\\main\\templates\\" + content+".html";
-        if(charCount.countChar(content, '\\') == 0){
+        if(charThing.countChar(content, '\\') == 0){
             oriFilePath = "demo-spring\\src\\main\\resources\\templates\\basic\\contentBasic.html";
             
             String filePath1 = "demo-spring\\src\\main\\resources\\templates\\"+content;
@@ -50,8 +50,8 @@ public class Filehtml {
 
     public static void deletehtml(String[] args,String content){
 
-        System.out.println(charCount.countChar(content, '\\'));
-        if(charCount.countChar(content, '\\') == 0){
+        System.out.println(charThing.countChar(content, '\\'));
+        if(charThing.countChar(content, '\\') == 0){
             String filePath1 = "demo-spring\\src\\main\\resources\\templates\\"+content;
             String filePath2 = "demo-spring\\build\\resources\\main\\templates\\"+content;
             File file1 = new File(filePath1);

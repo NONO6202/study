@@ -15,7 +15,7 @@ import dev.nono6202.demo_spring.DB.contentRep;
 import dev.nono6202.demo_spring.DB.post;
 import dev.nono6202.demo_spring.DB.postRep;
 import dev.nono6202.demo_spring.java.Filehtml;
-import dev.nono6202.demo_spring.java.charCount;
+import dev.nono6202.demo_spring.java.charThing;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -80,16 +80,24 @@ public class UtileController {
                             @RequestParam("substance") String substance,
                             RedirectAttributes re) {
         
-        post p = new post();
-        p.content= content; p.title= title; p.link= link; 
-        p.tag= tag; p.substance = substance;
-
-        prep.save(p);
-
-        Filehtml.createhtml(null, content+"\\"+link);
-        
-        re.addAttribute("msg", "대성공");
-        re.addAttribute("url","/post");
+        if(prep.existsById(link)){ //링크가 동일하면 실패
+            re.addAttribute("msg", "동일한 링크가 있습니다.");
+            re.addAttribute("url","/post");
+        }else if(charThing.annihilating(null, link)){
+            re.addAttribute("msg", "특수문자 또는 특정단어가 들어가 있습니다.");
+            re.addAttribute("url","/post");
+        }else{
+            post p = new post();
+            p.content= content; p.title= title; p.link= link; 
+            p.tag= tag; p.substance = substance;
+    
+            prep.save(p);
+    
+            Filehtml.createhtml(null, content+"\\"+link);
+            
+            re.addAttribute("msg", "대성공");
+            re.addAttribute("url","/post");
+        }
         return "redirect:/popup";
     }
 
@@ -97,14 +105,24 @@ public class UtileController {
     public String postputup2(@RequestParam("appearance") String appearance,
                             @RequestParam("link") String link,
                             RedirectAttributes re) {
-        
-        content c = new content();
-        c.num= 0; c.appearance= appearance; c.link= link;
-        crep.save(c);
 
-        Filehtml.createhtml(null, link);
-        re.addAttribute("msg", "대성공");
-        re.addAttribute("url","/post");
+        System.out.println(charThing.annihilating(null, link));
+        
+        if(crep.existsById(link)){ //목차가 동일하면 실패
+            re.addAttribute("msg", "동일한 링크가 있습니다.");
+            re.addAttribute("url","/post");
+        }else if(charThing.annihilating(null, link)){
+            re.addAttribute("msg", "특수문자 또는 특정단어가 들어가 있습니다.");
+            re.addAttribute("url","/post");
+        }else{
+            content c = new content();
+            c.num= 0; c.appearance= appearance; c.link= link;
+            crep.save(c);
+
+            Filehtml.createhtml(null, link);
+            re.addAttribute("msg", "대성공");
+            re.addAttribute("url","/post");
+        }
         return "redirect:/popup";
     }
 
@@ -127,10 +145,16 @@ public class UtileController {
     public String postdelete1(@RequestParam("content") String content,
                             RedirectAttributes re) {
 
-        crep.deleteById(content);
-        Filehtml.deletehtml(null, content);
-        re.addAttribute("msg", "대성공");
-        re.addAttribute("url","/post");
+        System.out.println(content);
+        if(content.equals("void")){
+            re.addAttribute("msg", "선택 해주세요.");
+            re.addAttribute("url","/post");
+        }else{
+            crep.deleteById(content);
+            Filehtml.deletehtml(null, content);
+            re.addAttribute("msg", "대성공");
+            re.addAttribute("url","/post");
+        }
         return "redirect:/popup";
     }
     
@@ -138,10 +162,15 @@ public class UtileController {
     public String postdelete2(@RequestParam("title") String title,
                             RedirectAttributes re) {
 
-        prep.deleteById(charCount.extract(null,title));
-        Filehtml.deletehtml(null, title);
-        re.addAttribute("msg", "대성공");
-        re.addAttribute("url","/post");
+        if(title.equals("void")){
+            re.addAttribute("msg", "선택 해주세요.");
+            re.addAttribute("url","/post");
+        }else{
+            prep.deleteById(charThing.extract(null,title));
+            Filehtml.deletehtml(null, title);
+            re.addAttribute("msg", "대성공");
+            re.addAttribute("url","/post");
+        }
         return "redirect:/popup";
     }
 }

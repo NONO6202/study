@@ -34,8 +34,12 @@ public class BlogController {
     }
 
     @GetMapping("/Main/{contentlist}/{postlist}")
-    public String list1(@PathVariable String contentlist,@PathVariable String postlist,Model mo){
+    public String list1(@PathVariable String contentlist,
+                        @PathVariable String postlist,Model mo){
 
+        mo.addAttribute("selector", contentlist);
+        mo.addAttribute("content", crep.findall());
+        mo.addAttribute("post", prep.findpost(contentlist));
         return contentlist+"/"+postlist;
     }
 
