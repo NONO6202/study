@@ -36,7 +36,7 @@
 	</div>
 	
 	<div id="topbar">
-		<a href="/Main" id="topbarSelector"> <span text="/Main">Main</span> </a>
+		<a href="/Main" class="topbarSelector"> <span text="/Main">Main</span> </a>
 	</div>
 
 	<div id="point">
@@ -45,8 +45,10 @@
 			<h1>환영합니다!</h1>
 
 		</div>
-		<div th:each="p:${post}">
-			<a name="postlist" th:href="@{|Main/${p[0]}/${p[2]}|}" th:value="${p[2]}"> <span name="contentlist" th:utext="${p[1]}" th:value="${selector}">utext</span></a>
+		<div th:each="p,pstat:${post}">
+			<a name="postlist" th:href="@{|${selector}/${p[2]}|}" th:value="${p[2]}" class="pointPost"> <span name="contentlist" th:utext="${p[1]}" th:value="${selector}">utext</span></a><p>
+			<div th:text="${p[4]}" class="word">내용</div><br>
+			<div><span th:text="|${date[pstat.index]}|" class="date"></span> <span class="tag">테그 기능만들기</span></div>
 			<hr>
 		</div>
 	</div>

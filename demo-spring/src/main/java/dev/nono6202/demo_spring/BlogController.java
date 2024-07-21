@@ -22,6 +22,7 @@ public class BlogController {
         mo.addAttribute("selector", "Main");
         mo.addAttribute("content", crep.findall());
         mo.addAttribute("post", prep.findtitle());
+        mo.addAttribute("date", prep.finddateAll());
         return "Main";
     }
 
@@ -30,6 +31,7 @@ public class BlogController {
         mo.addAttribute("selector", list);
         mo.addAttribute("content", crep.findall());
         mo.addAttribute("post", prep.findpost(list));
+        mo.addAttribute("date", prep.finddate(list));
         return list;
     }
 

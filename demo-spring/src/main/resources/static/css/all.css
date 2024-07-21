@@ -114,11 +114,17 @@ body{
     overflow-x: hidden;
     color: #838383;
 }
-#topbarSelector{
+.topbarSelector{
     text-decoration-line: none;
     color: #529ad4;
 }
-#topbarSelector:hover{
+.topbarSelector a:visited{
+    color: #529ad4;
+}
+.topbarSelector a:link{
+    color: #529ad4;
+}
+.topbarSelector:hover{
     text-decoration-line: underline;
     color: #93cf61;
 }
@@ -127,6 +133,45 @@ body{
 #point {/* Same as the width of the sidenav */
     margin: 50px 0px 0px 250px;
     color : white;
+}
+
+.pointPost{
+    font-size: 28px;
+    text-decoration-line: none;
+    color: #529ad4;
+}
+.pointPost:visited{
+    color: #d24ee4;
+}
+.pointPost:link{
+    color: #d24ee4;
+}
+.pointPost:hover{
+    text-decoration-line: underline;
+    color: #93cf61;
+}
+
+.word{
+    font-size: 18px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    line-height: 1.2;
+    text-align: left;
+    word-wrap: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.date {
+    font-size: 10px;
+    color : gray;
+    margin-right: 10px;
+}
+.tag {
+    font-size: 10px;
+    color : gray;
 }
 
 /*미디어 쿼리 나중에 확인하기!!*/

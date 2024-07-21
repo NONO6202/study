@@ -20,7 +20,7 @@ public class charThing {
     public static boolean annihilating(String args[],String string){
         List<String> list = new ArrayList<>(){{
             add("\\"); add("\'"); add("\""); add("<"); add(">"); 
-            add(" "); add("/");
+            add(" "); add("/"); add("|");
 
             add("void"); add("null"); add("Null");
         }};
