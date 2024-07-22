@@ -41,10 +41,10 @@
 
 	<div id="point">
 		<!--DB// 제목 작성일 짧은 글 등 접목 시키기-->
-		<div>
-			<h1>환영합니다!</h1>
-
-		</div>
+		<div th:each="c:${content}" th:if="${c[1]}==${selector}" id="intro">
+			<h1 th:text="${c[2]}">appearance</h1>
+			<div th:text="${c[3]}">소개글</div>
+		</div><p>
 		<div th:each="p,pstat:${post}">
 			<a name="postlist" th:href="@{|${selector}/${p[2]}|}" th:value="${p[2]}" class="pointPost"> <span name="contentlist" th:utext="${p[1]}" th:value="${selector}">utext</span></a><p>
 			<div th:text="${p[4]}" class="word">내용</div><br>

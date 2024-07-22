@@ -86,6 +86,9 @@ public class UtileController {
         }else if(charThing.annihilating(null, link)){
             re.addAttribute("msg", "특정특수문자 또는 특정단어가 들어가 있습니다.");
             re.addAttribute("url","/post");
+        }else if(content.equals("void")){
+            re.addAttribute("msg", "목차를 선택 해주세요.");
+            re.addAttribute("url","/post");
         }else{
             post p = new post();
             p.content= content; p.title= title; p.link= link; 
@@ -104,6 +107,7 @@ public class UtileController {
     @GetMapping("/post/putup2")
     public String postputup2(@RequestParam("appearance") String appearance,
                             @RequestParam("link") String link,
+                            @RequestParam("introduction") String introduction,
                             RedirectAttributes re) {
 
         System.out.println(charThing.annihilating(null, link));
@@ -116,7 +120,7 @@ public class UtileController {
             re.addAttribute("url","/post");
         }else{
             content c = new content();
-            c.num= 0; c.appearance= appearance; c.link= link;
+            c.num= 0; c.appearance= appearance; c.link= link; c.introduction = introduction;
             crep.save(c);
 
             Filehtml.createhtml(null, link);

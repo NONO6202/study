@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 public interface contentRep extends JpaRepository<content, String>{
-    @Query("select num,link,appearance from content order by num") List<List<String>> findall();
+    @Query("select num,link,appearance,introduction from content order by num") List<List<String>> findall();
     @Query("select link from content order by num") List<String> findlink();
     @Query("select count(link) from content") Integer colcount();
 

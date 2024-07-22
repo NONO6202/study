@@ -8,4 +8,5 @@ public class content {
     public Integer num;
     @Id public String link;
     public String appearance;
+    public String introduction;
 }

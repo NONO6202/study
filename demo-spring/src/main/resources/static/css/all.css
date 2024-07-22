@@ -134,6 +134,9 @@ body{
     margin: 50px 0px 0px 250px;
     color : white;
 }
+#intro{
+    margin-bottom: 60px;
+}
 
 .pointPost{
     font-size: 28px;
